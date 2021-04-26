@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<h1>All Employees</h1>
+<hr>
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+  <div class="col-md-3 col-sm-6">
+      <div class="thumbnail">
+          <a href="/employees/new"><img src="/icons/plus.svg" alt="" width="64" height="64" title="Add User">
+           <p>
+               <a class="add-new btn btn-outline-success" href="/employees/new">Add Employee</a>
+           </p>
+       </div>
+</div>
+  <% users.forEach(function(user){ %>
+     <div class="col-md-3 col-sm-6">
+         <div class="thumbnail">
+             <img src="/icons/person.svg" alt="" width="32" height="32" title="Computer Assets">
+              <div class="caption">
+                   <h4><%=user.firstname%> <%=user.lastname%></h4>
+              </div>
+              <p>
+                  <a class="btn btn-outline-success" href="/employees/<%=user._id%>">More Info</a>
+              </p>
+          </div>
+     </div>
+  <% }) %>
+  </div>
+<%- include('../partials/footer') %>

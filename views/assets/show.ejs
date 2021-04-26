@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<h1>All Assets</h1>
+<hr>
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+  <div class="col-md-3 col-sm-6">
+      <div class="thumbnail">
+          <a href="/assets/new"><img src="/icons/plus.svg" alt="" width="64" height="64" title="Add Asset">
+           <p>
+               <a class="add-new btn btn-outline-success" href="/assets/new">Add Asset</a>
+           </p>
+       </div>
+</div>
+  <% assets.forEach(function(asset){ %>
+     <div class="col-md-3 col-sm-6">
+         <div class="thumbnail">
+           <%if (asset.assetType == 'computer') { %>
+             <img src="/icons/display.svg" alt="" width="32" height="32" title="Computer Assets">
+           <%} else {%>
+             <img src="/icons/tablet.svg" alt="" width="32" height="32" title="Mobile Assets">
+             <%}%>
+              <div class="caption">
+                   <h4><%=asset.assetID%></h4>
+                   <p><%=asset.assetVendor%> / <%=asset.assetModel%></p>
+                   <p>
+                     <%if (asset.assetStatus == 'Ready') { %>
+                       <img src="/icons/check-circle.svg" alt="" width="32" height="32" title="Ready for Use">
+                     <%} else if (asset.assetStatus == 'Not Ready') {%>
+                       <img src="/icons/alert-circle.svg" alt="" width="32" height="32" title="Not Ready">
+                     <%} else if (asset.assetStatus == 'In Use') {%>
+                       <img src="/icons/person.svg" alt="" width="32" height="32" title="Assigned to <%=asset.assignee%>">
+                       <%}%>
+                   </p>
+              </div>
+              <p>
+                  <a class="btn btn-outline-success" href="/assets/<%=asset.assetID%>">More Info</a>
+                  <%if (asset.assetReady == 'yes') { %>
+                  <a class="btn btn-outline-secondary" href="/assets/assign/<%=asset.assetID%>">Assign</a>
+                  <%}%>
+              </p>
+          </div>
+     </div>
+  <% }) %>
+  </div>
+<%- include('../partials/footer') %>

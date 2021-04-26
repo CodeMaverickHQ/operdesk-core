@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+<div class="asset-view">
+<h1><%= user.firstname %> <%= user.lastname %></h1>
+<br>
+ <table class="table table-hover">
+   <tbody>
+     <tr>
+       <th scope="row">First name:</th>
+       <td><%= user.firstname %></td>
+     </tr>
+       <tr>
+         <th scope="row">Last name:</th>
+         <td><%= user.lastname %></td>
+       </tr>
+       <tr>
+         <th scope="row">Username:</th>
+         <td><%= user.username %></td>
+       </tr>
+       <tr>
+         <th scope="row">Email:</th>
+         <td><%= user.email %></td>
+       </tr>
+       <tr>
+         <th scope="row">Department:</th>
+         <td>
+             <h4><span class="badge badge-pill badge-primary"><%=user.department%></span></h4>
+       </tr>
+       <tr>
+         <th scope="row">Start Date:</th>
+         <td>
+             <%= moment(user.startdate).format('MMMM Do YYYY') %>
+       </tr>
+   </table>
+   </div>
+<h1>Assigned Assets</h1>
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Asset ID</td>
+      <td>Vendor</td>
+      <td>Model</td>
+      <td>Location</td>
+      <td>Return</td>
+    </tr>
+  </thead>
+  <tbody>
+      <% assets.forEach(function(asset){ %>
+      <tr>
+        <td><a href="/assets/<%= asset.assetID%>"><%= asset.assetID%></a></td>
+        <td><%= asset.assetVendor%></td>
+        <td><%= asset.assetModel%></td>
+        <td><%= asset.assetLocation%></td>
+        <td><a class="btn btn-outline-danger" href="/assets/<%= asset.assetID%>/return">RETURN ASSET</a></td>
+      </tr>
+      <% }) %>
+  </table>
+<%- include('../partials/footer') %>

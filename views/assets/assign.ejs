@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+<div class="asset-view">
+<h1>Asset <%= asset[0]['assetID'] %></h1>
+ <table class="table table-hover">
+   <tbody>
+       <tr>
+         <th scope="row">Type:</th>
+         <td><%= asset[0]['assetType'] %></td>
+       </tr>
+       <tr>
+         <th scope="row">Serial Number</th>
+         <td><%= asset[0]['assetSerial'] %></td>
+       </tr>
+         <tr>
+           <th scope="row">Vendor:</th>
+           <td><%= asset[0]['assetVendor'] %></td>
+         </tr>
+         <tr>
+           <th scope="row">Location:</th>
+           <td><%= asset[0]['assetLocation'] %></td>
+         </tr>
+         <tr>
+           <th scope="row">Asset Status:</th>
+           <td><%= asset[0]['assetStatus'] %></td>
+         </tr>
+         <tr>
+           <th scope="row">Departments:</th>
+           <td>
+                <% asset[0]['assetDepartment'].forEach(function(dep){%>
+                  <span class="badge badge-pill badge-primary"><%=dep%></span>
+                <% }) %>
+          </td>
+         </tr>
+         <tr>
+           <th scope="row">Assignee:</th>
+           <td>
+             <form action="/assets/<%= asset[0]['assetID'] %>/assign" method="POST">
+              <div class="form-group">
+                <label for="assignUser">Select User*</label>
+                <input autocomplete="off" name="assignee" id="assignUser" required list="users" class="custom-select bg-white rounded-pill shadow-sm">
+                <datalist id="users">
+                  <% users.forEach(function(user){ %>
+                    <% if(asset[0]['assetDepartment'].includes(user.department)) { %>
+                      <option value="<%=user.username%>"> <%=user.firstname%> <%=user.lastname%></option>
+                    <%} })%>
+                </datalist>
+              </div>
+              <div class="form-group float-right">
+                <button class="btn btn-outline-success rounded-pill shadow-sm">Assign</button>
+              </div>
+            </form>
+          </td>
+        </tr>
+  </table>
+</div>
+<%- include('../partials/footer') %>

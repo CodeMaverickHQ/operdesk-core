@@ -1,0 +1,51 @@
+ <%- include('../partials/header') %>
+<div class="asset-view">
+<h1>Asset <%= asset[0]['assetID'] %></h1>
+  <table class="table table-hover">
+    <tbody>
+        <tr>
+          <th scope="row">Type</th>
+          <td><%= asset[0]['assetType'] %></td>
+        </tr>
+        <tr>
+          <th scope="row">Serial Number</th>
+          <td><%= asset[0]['assetSerial'] %></td>
+        </tr>
+          <tr>
+            <th scope="row">Vendor</th>
+            <td><%= asset[0]['assetVendor'] %></td>
+          </tr>
+          <tr>
+            <th scope="row">Location</th>
+            <td><%= asset[0]['assetLocation'] %></td>
+          </tr>
+          <tr>
+            <th scope="row">Status</th>
+            <td><%= asset[0]['assetStatus'] %></td>
+          </tr>
+          <tr>
+            <th scope="row">Assignee</th>
+            <td><%if(asset[0]['assignee'] == '{}' ){ %>
+              Not assigned
+            <%}else{%>
+              <%= asset[0]['assignee'] %>
+              <%}%>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Available for departments</th>
+            <td>
+              <% asset[0]['assetDepartment'].forEach(function(dep){%>
+                <span class="badge badge-pill badge-primary"><%=dep%></span>
+              <% }) %>
+            </td>
+          </tr>
+    </table>
+    <% if (asset[0]['assignee'] != '{}' ){ %>
+      <a class="btn btn-outline-danger btn-block" href="/assets/<%=asset[0]['assetID']%>/return">Return Asset</a>
+    <%} else if(asset[0]['assetStatus'] == 'Ready'){%>
+      <a class="btn btn-outline-success btn-block" href="/assets/assign/<%=asset[0]['assetID']%>">Assign Asset</a>
+    <%} else {%>
+      <a class="btn btn-outline-success btn-block" href="/assets/<%=asset[0]['assetID']%>/ready">Ready for Use</a>
+    <%}%>
+ <%- include('../partials/footer') %>

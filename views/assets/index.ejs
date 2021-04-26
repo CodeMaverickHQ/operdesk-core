@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+ <h1><%=assetType %> Assets</h1>
+ <table class="table table-hover">
+   <thead>
+     <tr>
+       <td>Asset ID</td>
+       <td>Vendor</td>
+       <td>Model</td>
+       <td>Location</td>
+       <td>Status</td>
+       <td>Assignee</td>
+     </tr>
+   </thead>
+   <tbody>
+       <% assets.forEach(function(asset){ %>
+       <tr>
+         <td><a href="/assets/<%= asset.assetID%>"><%= asset.assetID%></a></td>
+         <td><%= asset.assetVendor%></td>
+         <td><%= asset.assetModel%></td>
+         <td><%= asset.assetLocation%></td>
+         <td><%= asset.assetStatus%></td>
+         <td><% if(asset.assignee == '{}'){ %>
+           Not Assigned
+         <%} else{%>
+           <%= asset.assignee%></td>
+         <%}%>
+
+
+       </tr>
+       <% }) %>
+   </table>
+
+<%- include('../partials/footer') %>

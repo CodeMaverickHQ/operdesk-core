@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+<h1>Add Asset</h1>
+<div class="container asset-form">
+  <form action="/assets" method="POST">
+
+    <div class="form-check-inline form-group">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" checked value="computer" name="assetType">Computer
+      </label>
+    </div>
+    <div class="form-check-inline form-group">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" value="mobile" name="assetType">Mobile
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="assetID">Asset ID*</label>
+      <input name="assetID" required type="number" class="form-control rounded-pill" id="assetID" placeholder="e.g. 1234">
+    </div>
+    <div class="form-group">
+      <label for="assetSerial">Serial number*</label>
+      <input name="assetSerial" required type="text" class="form-control rounded-pill" id="assetSerial" placeholder="e.g. 2ZQXN9QVL7NVJB35GXX7Y">
+    </div>
+  <div class="form-group">
+    <label for="assetVendor">Select vendor*</label>
+    <input name="assetVendor" id="assetVendor" required list="Vendor" class="custom-select bg-white rounded-pill px-4 py-3 shadow-sm ">
+      <datalist id="Vendor">
+        <option value="Apple">Apple</option>
+        <option value="HP">HP</option>
+        <option value="Dell">Dell</option>
+        <option value="Lenovo">Lenovo</option>
+        <option value="Asus">Asus</option>
+        <option value="Samsung">Samsung</option>
+      </datalist>
+  </div>
+  <div class="form-group">
+    <label for="assetModel ">Asset Model*</label>
+    <input name="assetModel" required type="text" class="form-control rounded-pill" id="assetModel" placeholder="e.g. Macbook Air 2019">
+  </div>
+  <div class="form-group">
+  <label for="assetLocation">Select the asset location*</label>
+  <select name="assetLocation" id="assetLocation" data-style="bg-white rounded-pill shadow-sm " class="form-control selectpicker w-100">
+      <option selected>Amsterdam</option>
+    <option>London</option>
+  </select>
+    </div>
+
+    <div class="form-group">
+      <label for="assetDepartment">Selects departments for this asset*</label>
+      <select required id="assetDepartment" name="assetDepartment" multiple data-style="bg-white rounded-pill shadow-sm " class="form-control selectpicker w-100">
+        <option value="DEV">Development</option>
+        <option value="CS">Customer Support</option>
+        <option value="HR">Human Relations</option>
+        <option value="IT">IT OPS</option>
+      </select>
+    </div>
+  <div class="form-check-inline form-group">
+    <label class="form-check-label">
+      Asset Status
+      <input type="radio" class="form-check-input" checked value="Ready" name="assetStatus">Ready
+    </label>
+  </div>
+  <div class="form-check-inline form-group">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" value="no" name="assetStatus">Not Ready
+    </label>
+    </div>
+  <div class="form-group">
+    <button class="rounded-pill btn btn-outline-success btn-block">ADD</button>
+  </div>
+  </form>
+  <a class="rounded-pill btn btn-outline-danger btn-block" href="/">CANCEL</a>
+</div>
+<script>
+
+  $(function () {
+    $('.selectpicker').selectpicker();
+});
+</script>
+<%- include('../partials/footer') %>

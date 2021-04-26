@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<h1>Add User</h1>
+<div class="container asset-form">
+  <form action="/employees" method="POST">
+    <div class="form-group">
+      <label for="firstName">Firstname*</label>
+      <input name="firstName" required type="text" class="form-control bg-white rounded-pill shadow-sm " id="firstName">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Lastname*</label>
+      <input name="lastName" required type="text" class="form-control bg-white rounded-pill shadow-sm " id="lastName">
+    </div>
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input name="email" required type="email" class="form-control bg-white rounded-pill shadow-sm " id="email" placeholder="e.g. user@company.com">
+    </div>
+  <div class="form-group">
+  <label for="location">Select the users main location*</label>
+  <select name="location" id="location" data-style="rounded-pill shadow-sm " class="form-control selectpicker w-100">
+      <option selected>Amsterdam</option>
+      <option>London</option>
+  </select>
+    </div>
+    <div class="form-group">
+      <label for="startDate">Select start date*</label>
+      <input type="date" required name="startDate" id="startDate" class="rounded-pill w-100" name="startingdate">
+    </div>
+    <div class="form-group">
+      <label for="userDepartment">Select users Department*</label>
+      <input name="userDepartment" id="userDepartment" required list="departments" class="custom-select bg-white rounded-pill shadow-sm">
+        <datalist id="departments">
+          <option value="DEV">Development</option>
+          <option value="CS">Customer Support</option>
+          <option value="HR">Human Relations</option>
+          <option value="IT">IT OPS</option>
+        </datalist>
+    </div>
+  <div class="form-group">
+    <button class="rounded-pill btn btn-outline-success btn-block">ADD</button>
+  </div>
+  </form>
+  <a class="rounded-pill btn btn-outline-danger btn-block" href="/">CANCEL</a>
+</div>
+<%- include('../partials/footer') %>
